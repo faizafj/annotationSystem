@@ -18,7 +18,9 @@ function App() {
 	console.log (userID)
 	const [documents, setDocuments] = useState([]);
     const classes = useStyles();
-
+	if (userID == null) {
+		window.location.href = "/Login"
+	}
 	useEffect(()=> {
 			fetch('https://deliverrelax-amandarose-5000.codio-box.uk/documents', 
                   { credentials: 'include' }).then(response =>response.json().then(data => {setDocuments(data.documents);
@@ -27,7 +29,7 @@ function App() {
 	},[]);
 	return (
                 <div className= {classes.profileContainer}>              
-                <p className= {classes.theTitle}>All Documents</p> 
+                <p className= {classes.theTitle}>My Documents</p> 
 		<div className="Documents">
 		<Documents document={documents}/> </div> </div>
 	);     

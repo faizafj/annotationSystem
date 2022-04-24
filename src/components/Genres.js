@@ -2,21 +2,48 @@ import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles'
 import {useParams} from "react-router-dom";
 import Button from '@material-ui/core/Button';
-
-const useStyles =  makeStyles( (theme) => ({
-    movieDetails:{
+import { PDFViewer } from 'react-view-pdf';
+const useStyles =  makeStyles( (theme) => ({ //styling
+    documentDetails:{
         font: "10px", 
-        width: "250px",
-        height: "500px",
+        width: "90%",
+        padding: "10px",
+        height: "fit-content",
         border: "1px solid black",
-        borderRadius: '5px',
-        marginLeft:'25px',
-        marginRight: '10px',
-        marginTop: '20px',
-        marginBottom: '40px',
-        rowGap: '1.5em',
+        borderRadius: '3px',
+        margin:'25px',
+        // rowGap: '2em',
         background: 'white',
+        display:'grid',
+        
 },
+    sectionOne:{
+        // border: "1px solid black",
+        gridColumnStart: '1',
+        gridColumnEnd: '3',
+    },
+    sectionTwo:{
+        // border: "1px solid black",
+        margin: '0',
+        gridColumnStart: '1',
+        gridColumnEnd: '2',
+    },  
+    
+    sectionThree:{
+    margin: '0',
+    //    border: "1px solid black",
+        gridColumnStart: '2',
+        gridColumnEnd: '3',        
+            
+    },  
+
+    sectionFour:{
+    margin: '0',
+    //    border: "1px solid black",
+        gridColumnStart: '1',
+        gridColumnEnd: '3',    
+        textAlign: 'right',      
+    },  
     container: {
         width: 'auto',
         height: '300px',
@@ -25,50 +52,44 @@ const useStyles =  makeStyles( (theme) => ({
         marginLeft: 'auto',
         rowGap: '5px',
 },
-    viewDetails: {
-        color: '#BF4E30',
-        background: 'None',
-        font: "10px", 
-        marginLeft: "25px",
-         "&:hover": {
-            color: 'black',
-            background:'white',
-        },
-}, 
+
     title:{
-        fontSize: '15px;',
-        height: '30px',
+        fontSize: '25px;',
         color: 'black',
-        paddingTop: '5px',
-        textAlign: 'center',
+        textDecoration: 'bold',
  },
-    summary: {
+  
+    desc:{
+        overflowWrap: "break-word",
+        hyphens: "manual",
+        inlineSize: '600px',
+        margin: '10px',
+    },
+
+    viewDetails:{
+        color: 'white',
+        background: 'black',
+        width: '100px',
+        margin: '10px', 
         fontSize: '12px',
-        color: 'black',
-        marginLeft: "5px",
-        marginRight: "5px",
-        textAlign: "justify",
-        height: "120px",
+            "&:hover": {
+            color: 'white',
+            background:'#8420D9',
+        },
+    },
+
+    docImage:{
+        width: '200px',
+        height: 'auto', 
+        marginLeft: '50px',
+        border: "1px solid black",
+    },
+        fileview:{
+        width: '300px',
+        height: 'auto',
 },
-
-    moviePoster:{
-        height:"280px",
-        width: "200px",
-        marginLeft: "25px",
-        marginRight: "25px",
-        borderRadius: '5px', 
-        cursor: "pointer",
-},
-
-
-theTitle:{
-        textAlign: 'center',
-        fontSize: '30px',
-        color: '#BF4E30',
-},
-
-   
-}));  
+}));    
+ 
 
 function Genres (){
     const classes = useStyles();
@@ -87,18 +108,45 @@ function Genres (){
              console.log(documents)
              console.log (genre)
      return ( 
-                <div className= {classes.profileContainer}>              
-                <p className= {classes.theTitle}> {genre} </p> 
+                <div className= {classes.profileContainer}>  
+                <center>            
+                <h1 className= {classes.theTitle}> {genre} </h1> 
+                </center> 
             <div className = {classes.container}> 
                 {documents.map (document => { 
                 return (
-                    <div>
-                      <div className={classes.reviews}>  
-                      <p> {document.documentTitle} </p>
-                          <Button className={classes.viewDetails} onClick={() => {window.location=('/Details/'+ document.documentID)}} > View Details </Button> 
-                      </div>
-                   </div> 
-    )})} 
+               <div className={classes.documentDetails}> 
+               <div className={classes.sectionOne}>
+               <center>
+                  <h1> {document.documentTitle} </h1> 
+                </center>
+                </div>
+               <div className={classes.sectionTwo}>
+                                    {(() => { // If not a user logged in then it shows login and sign up link 
+                                    const docName = document.documentFile
+                                    console.log (docName)
+                    if(docName.includes(".pdf") || docName.includes(".ppt") || docName.includes(".docx") ){
+                            return(
+                                <React.Fragment>
+                                                <div className={classes.fileview}>
+                                                   <PDFViewer url= {"/documentFiles/"+ document.documentFile} className={classes.sized} />
+                                                </div>
+                                </React.Fragment>
+                   )} else { //if a user is logged in they can add a movie, view their reviews and logout
+                            return(
+                                 <React.Fragment>
+                                    <img className ={classes.docImage} src= {"/documentFiles/"+ document.documentFile} onClick={() => {window.location=('/Details/'+ document.documentID)}}/> 
+                                </React.Fragment>
+                )}})()}
+                </div>
+                <div className={classes.sectionThree}>
+                <p className={classes.desc}> {document.documentDescription}  </p> 
+                </div>
+                 <div className={classes.sectionFour}>
+                <Button className={classes.viewDetails} onClick={() => {window.location=('/Details/'+ document.documentID)}} > View Details </Button> 
+                </div>
+               </div> 
+)})} 
         </div> </div>
 )}
 

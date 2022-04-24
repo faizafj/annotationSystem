@@ -90,8 +90,17 @@ function MenuBar() { //function to create the navigation bar.
                             return(
                                  <React.Fragment>
                                 <Link to="/" className={classes.link}> Home </Link>
-                                <Link to="/Login" className={classes.link}>  Add A Movie </Link>
-                                <Link to="/Genres/Maths"  className={classes.link}>Maths</Link>
+                                <Link to="/AddDocument" className={classes.link}>  Add A File </Link>
+                            <div className={classes.dropDown}>
+                        <Link to="/" className={classes.link} onMouseEnter={() => setOnHover(true)}> Categories </Link> 
+                        {onHover && (
+                       <React.Fragment> <div className={classes.dropdownContent} onMouseLeave={() => setOnHover(false)}>
+                        <Link to="/Genres/Maths" className={classes.dropLink}>Maths</Link>
+                        <Link to="/Genres/Algorithms" className={classes.dropLink}>Algorithms</Link>
+                        <Link to="/Genres/Javascript" className={classes.dropLink}>Javascript</Link>
+                    </div> </React.Fragment>
+                        )}
+                    </div>
                                 <Link to="/" onClick={handleLogout} className={classes.link}> Logout </Link>
                                 </React.Fragment>
                         )}})()}

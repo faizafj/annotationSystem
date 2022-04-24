@@ -1,22 +1,49 @@
 import React from 'react'; //required imports
 import {makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
-//import { PDFViewer } from 'react-view-pdf';
+import { PDFViewer } from 'react-view-pdf';
 
 const useStyles =  makeStyles( (theme) => ({ //styling
-    movieDetails:{
+    documentDetails:{
         font: "10px", 
         width: "90%",
-        height: "200px",
+        padding: "10px",
+        height: "fit-content",
         border: "1px solid black",
         borderRadius: '3px',
-        marginLeft:'25px',
-        marginRight: '10px',
-        marginTop: '20px',
-        marginBottom: '40px',
-        rowGap: '2em',
+        margin:'25px',
+        // rowGap: '2em',
         background: 'white',
+        display:'grid',
 },
+    sectionOne:{
+        // border: "1px solid black",
+        gridColumnStart: '1',
+        gridColumnEnd: '3',
+    },
+    sectionTwo:{
+        // border: "1px solid black",
+        margin: '0',
+        gridColumnStart: '1',
+        gridColumnEnd: '2',
+    },  
+    
+    sectionThree:{
+    margin: '0',
+        border: "1px solid black",
+        gridColumnStart: '2',
+        gridColumnEnd: '3',   
+        padding: '0',     
+            
+    },  
+
+    sectionFour:{
+    margin: '0',
+    //    border: "1px solid black",
+        gridColumnStart: '1',
+        gridColumnEnd: '3',    
+        textAlign: 'right',      
+    },  
     container: {
         width: 'auto',
         height: '300px',
@@ -25,71 +52,82 @@ const useStyles =  makeStyles( (theme) => ({ //styling
         marginLeft: 'auto',
         rowGap: '5px',
 },
-    viewDetails: {
-        color: '#BF4E30',
-        background: 'None',
-        font: "10px", 
-        marginLeft: "25px",
-         "&:hover": {
-            color: 'black',
-            background:'white',
-        },
-}, 
+
     title:{
-        fontSize: '30px;',
+        fontSize: '25px;',
         color: 'black',
-        paddingTop: '5px',
         textDecoration: 'bold',
  },
-    summary: {
+  
+    desc:{
+        overflowWrap: "break-word",
+        hyphens: "manual",
+        inlineSize: '900px',
+        margin: '10px',
+        fontSize: '20px', 
+        //border: 'solid 1px black',
+    },
+
+    viewDetails:{
+        color: 'white',
+        background: 'black',
+        width: '100px',
+        margin: '10px', 
         fontSize: '12px',
-        color: 'black',
-        marginLeft: "5px",
-        marginRight: "5px",
-        textAlign: "justify",
-        height: "120px",
-},
-
-    moviePoster:{
-        height:"280px",
-        width: "200px",
-        marginLeft: "25px",
-        marginRight: "25px",
-        borderRadius: '5px', 
-        cursor: "pointer",
-},
-
-    
-    titleHeading:{
-        color: 'green',
-        fontSize: '20px',
+            "&:hover": {
+            color: 'white',
+            background:'#8420D9',
+        },
     },
-    
-        
-    sized:{
+
+    docImage:{
+        width: '200px',
+        height: 'auto', 
+        border: "1px solid black",
+    },
+        fileview:{
         width: '300px',
-        height: '500px',
-    },
-    
+        height: 'auto',
+        border: "1px solid black",
+},
 }));    
 
 export const Documents = ({document}) => { 
   const classes = useStyles(); 
+  	const userID=localStorage.getItem('userID'); 
     return ( 
         <div> 
             {document.map (documents => { 
              console.log(documents)
+            const docName = documents.documentFile
+            console.log (docName)
             return (
                 <center> 
-               <div className={classes.movieDetails}> 
+               <div className={classes.documentDetails}> 
                <div className={classes.sectionOne}>
-                  <h2> {documents.documentTitle} </h2> 
+                  <h1> {documents.documentTitle} </h1> 
                 </div>
                <div className={classes.sectionTwo}>
-                  <h2> {documents.documentDescription} </h2> 
+                                    {(() => { 
+                    if(docName.includes(".pdf") || docName.includes(".ppt") || docName.includes(".docx") ){
+                            return(
+                                <React.Fragment>
+                                                <div className={classes.fileview}>
+                                                   <PDFViewer url= {"/documentFiles/"+ documents.documentFile} className={classes.sized} />
+                                                </div>
+                                </React.Fragment>
+                   )} else { 
+                            return(
+                                 <React.Fragment>
+                                    <img className ={classes.docImage} src= {"/documentFiles/"+ documents.documentFile} onClick={() => {window.location=('/Details/'+ documents.documentID)}}/> 
+                                </React.Fragment>
+                        )}})()}
                 </div>
                 <div className={classes.sectionThree}>
-                <p> {documents.documentGenre} </p>
+                <p className={classes.desc}> {documents.documentDescription}  </p> 
+                </div>
+
+                 <div className={classes.sectionFour}>
                 <Button className={classes.viewDetails} onClick={() => {window.location=('/Details/'+ documents.documentID)}} > View Details </Button> 
                 </div>
                </div> 
@@ -99,5 +137,3 @@ export const Documents = ({document}) => {
 )}
 
 export default Documents 
-
-//                 <PDFViewer url="/documentFiles/5008CEM.pdf" className={classes.sized} />
