@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import '../App.css';
 import { Documents } from "./Documents";
 import {makeStyles} from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button';
+
 
 const useStyles =  makeStyles((theme) => ({
 
@@ -10,6 +12,18 @@ theTitle:{
         fontSize: '30px',
         color: 'black',
 },
+     Buttonss: {
+        color: '#8420D9',
+        background: 'white',
+		border: 'solid 1px #8420D9',
+        font: "10px", 
+        margin: "10px",
+		textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            background: '#8420D9',
+},},
+
   
 }))
 
@@ -28,7 +42,16 @@ function App() {
 		);
 	},[]);
 	return (
-                <div className= {classes.profileContainer}>              
+                <div className= {classes.profileContainer}>   
+				<center>
+				        <div className={classes.linkButtons}>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Maths')}}>Home</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Javascript')}}>Javascript</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Algorithms')}}>Algorithms</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Computing')}}>Computing</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Random')}}>Random</Button>
+                        </div>    
+				</center>       
                 <p className= {classes.theTitle}>My Documents</p> 
 		<div className="Documents">
 		<Documents document={documents}/> </div> </div>

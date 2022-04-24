@@ -98,7 +98,10 @@ function MenuBar() { //function to create the navigation bar.
                         <Link to="/Genres/Maths" className={classes.dropLink}>Maths</Link>
                         <Link to="/Genres/Algorithms" className={classes.dropLink}>Algorithms</Link>
                         <Link to="/Genres/Javascript" className={classes.dropLink}>Javascript</Link>
-                    </div> </React.Fragment>
+                        <Link to="/Genres/Computing" className={classes.dropLink}>Computing</Link>
+                        <Link to="/Genres/Random" className={classes.dropLink}>Random</Link>                                           
+                        
+                         </div> </React.Fragment>
                         )}
                     </div>
                                 <Link to="/" onClick={handleLogout} className={classes.link}> Logout </Link>

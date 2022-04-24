@@ -19,7 +19,7 @@ function App() {  //used to route the pages and adds the hyperlink to the menu b
                 <Route exact path="/SignUp" element={<SignUp/>}/>       
                 <Route exact path="/Details/:id" element={<Details/>}/>    
                 <Route exact path="/Genres/:genre" element={<Genres/>}/> 
-                <Route exact path="/AddDocument" element={<AddDocument/>}/>                                             
+                <Route exact path="/AddDocument" element={<AddDocument/>}/>  
             </Routes>
         </BrowserRouter>
 

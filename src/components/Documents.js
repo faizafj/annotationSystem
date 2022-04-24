@@ -37,6 +37,18 @@ const useStyles =  makeStyles( (theme) => ({ //styling
             
     },  
 
+     Buttonss: {
+        color: '#8420D9',
+        background: 'white',
+		border: 'solid 1px #8420D9',
+        font: "10px", 
+        margin: "10px",
+		textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            background: '#8420D9',
+},},
+
     sectionFour:{
     margin: '0',
     //    border: "1px solid black",
@@ -125,6 +137,7 @@ export const Documents = ({document}) => {
                 </div>
                 <div className={classes.sectionThree}>
                 <p className={classes.desc}> {documents.documentDescription}  </p> 
+                <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/'+documents.documentGenre)}}>{documents.documentGenre}</Button>
                 </div>
 
                  <div className={classes.sectionFour}>

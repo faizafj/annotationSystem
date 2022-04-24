@@ -88,6 +88,18 @@ const useStyles =  makeStyles( (theme) => ({ //styling
         width: '300px',
         height: 'auto',
 },
+
+     Buttonss: {
+        color: '#8420D9',
+        background: 'white',
+		border: 'solid 1px #8420D9',
+        font: "10px", 
+        margin: "10px",
+		textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            background: '#8420D9',
+},},
 }));    
  
 
@@ -109,6 +121,15 @@ function Genres (){
              console.log (genre)
      return ( 
                 <div className= {classes.profileContainer}>  
+                <center>
+				        <div className={classes.linkButtons}>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Maths')}}>Home</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Javascript')}}>Javascript</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Algorithms')}}>Algorithms</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Computing')}}>Computing</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Random')}}>Random</Button>
+                        </div>    
+				</center>    
                 <center>            
                 <h1 className= {classes.theTitle}> {genre} </h1> 
                 </center> 
