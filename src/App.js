@@ -5,7 +5,7 @@ import MenuBar from "./components/MenuBar";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Details from "./components/Details";
-import Genres from "./components/Genres";
+import Categories from "./components/Categories";
 import AddDocument from "./components/AddDocument";
 import Home from './components/Home'
 
@@ -18,7 +18,7 @@ function App() {  //used to route the pages and adds the hyperlink to the menu b
                 <Route exact path="/Login" element={<Login/>}/>
                 <Route exact path="/SignUp" element={<SignUp/>}/>       
                 <Route exact path="/Details/:id" element={<Details/>}/>    
-                <Route exact path="/Genres/:genre" element={<Genres/>}/> 
+                <Route exact path="/Categories/:category" element={<Categories/>}/> 
                 <Route exact path="/AddDocument" element={<AddDocument/>}/>  
             </Routes>
         </BrowserRouter>

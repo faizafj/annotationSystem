@@ -45,11 +45,11 @@ function App() {
                 <div className= {classes.profileContainer}>   
 				<center>
 				        <div className={classes.linkButtons}>
-                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Maths')}}>Home</Button>
-                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Javascript')}}>Javascript</Button>
-                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Algorithms')}}>Algorithms</Button>
-                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Computing')}}>Computing</Button>
-                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/Random')}}>Random</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Categories/Maths')}}>Home</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Categories/Javascript')}}>Javascript</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Categories/Algorithms')}}>Algorithms</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Categories/Computing')}}>Computing</Button>
+                            <Button className={classes.Buttonss} onClick={() => {window.location=('./Categories/Random')}}>Random</Button>
                         </div>    
 				</center>       
                 <p className= {classes.theTitle}>My Documents</p> 

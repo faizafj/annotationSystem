@@ -68,8 +68,8 @@ function MenuBar() { //function to create the navigation bar.
 };
     const userID=localStorage.getItem('userID'); 
     
-    /* Bellow the links for the menu bar are defined
-     * There is a div created (inside the genres div) which creates a drop down.
+    /* Below the links for the menu bar are defined
+     * There is a div created (inside the dropdown content div) which creates a drop down which lists all the categories.
      * When it is hovered, the useState is set to true so it displays.
      * Once the user leaves the hover or does not hover on it all then useState is set to false so it is hidden.
      *  */
@@ -79,14 +79,14 @@ function MenuBar() { //function to create the navigation bar.
             <Toolbar className={classes.bar} >
                 <img  className={classes.logo}  onClick={() => {window.location=('/')}}/>
                 <div className={classes.navlinks}>
-                     {(() => { // If not a user logged in then it shows login and sign up link 
+                     {(() => { // If user is not logged in then it shows login and sign up link 
                     if(userID==null){
                             return(
                                 <React.Fragment>
                                 <Link to="/Login" className={classes.link}>  Login </Link>
                                 <Link to="/SignUp" className={classes.link}> Sign Up </Link>
                                 </React.Fragment>
-                   )} else { //if a user is logged in they can add a movie, view their reviews and logout
+                   )} else { //if a user is logged in they can view all the options
                             return(
                                  <React.Fragment>
                                 <Link to="/" className={classes.link}> Home </Link>
@@ -95,11 +95,11 @@ function MenuBar() { //function to create the navigation bar.
                         <Link to="/" className={classes.link} onMouseEnter={() => setOnHover(true)}> Categories </Link> 
                         {onHover && (
                        <React.Fragment> <div className={classes.dropdownContent} onMouseLeave={() => setOnHover(false)}>
-                        <Link to="/Genres/Maths" className={classes.dropLink}>Maths</Link>
-                        <Link to="/Genres/Algorithms" className={classes.dropLink}>Algorithms</Link>
-                        <Link to="/Genres/Javascript" className={classes.dropLink}>Javascript</Link>
-                        <Link to="/Genres/Computing" className={classes.dropLink}>Computing</Link>
-                        <Link to="/Genres/Random" className={classes.dropLink}>Random</Link>                                           
+                        <Link to="/Categories/Maths" className={classes.dropLink}>Maths</Link>
+                        <Link to="/Categories/Algorithms" className={classes.dropLink}>Algorithms</Link>
+                        <Link to="/Categories/Javascript" className={classes.dropLink}>Javascript</Link>
+                        <Link to="/Categories/Computing" className={classes.dropLink}>Computing</Link>
+                        <Link to="/Categories/Random" className={classes.dropLink}>Random</Link>                                           
                         
                          </div> </React.Fragment>
                         )}

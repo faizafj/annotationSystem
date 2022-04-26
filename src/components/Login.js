@@ -98,16 +98,16 @@ function Login() {
                 'Content-type': 'application/json',
                 'Authorization': token },
             }).then(response =>response.json().then(data => {
-             if(data.userID==null){ //checks if the password entered matches the userId, if not then the API returns userId = null so it knows the password is wrong
+             if(data.userID==null){ //checks if the password entered matches the userID, if not then the API returns userID = null so it knows the password is wrong
                    alert ('Incorrect Password')   
         }else{
-            localStorage.setItem('userID',data.userID) //once successful adds userId to local storange along with the auth token
+            localStorage.setItem('userID',data.userID) //once successful adds userID to local storange along with the auth token
             localStorage.setItem('authorization',token) 
             window.location.href='./' //redirects user to the homepage
         }})); };
     
-    /* used to create the whole page 
-     * Uses input fields so users can enter their username and password. When a value is enetred this is set to be the set useState
+    /* 
+     * Uses input fields so users can enter their username and password. When a value is entered this is set to be the set useState
      * There is a hyperlink to the sign up page for users who enetered the wrong page and actually need to sign up
      * Submit button calls the API which checks everything is correct
      * */

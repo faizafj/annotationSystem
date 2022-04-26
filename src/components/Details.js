@@ -140,7 +140,7 @@ function Details() {
     const [commentDescription, setCommentDescription] = useState([]); //sets the use states for each element
     const userID=localStorage.getItem('userID') //gets userID from local storage
 
-    function submitComment (event) { //adds a review when button clicked
+    function submitComment (event) { //adds a comment when the button clicked (event listener)
         const commentInfo = [id, userID, commentTitle, commentDescription]; 
             console.log (commentInfo)
               fetch('https://deliverrelax-amandarose-5000.codio-box.uk/AddComments', {
@@ -154,7 +154,6 @@ function Details() {
                       window.location.reload() //refreshes the page when it is done
                   }))
     event.preventDefault();
-
     }   
 
 

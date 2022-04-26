@@ -4,7 +4,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
 
 const useStyles =  makeStyles( (theme) => ({ //used for styling of each element on the page.
-    movieForm: {
+    documentForm: {
         font: '16px',
         margin: '10px',
         background: 'white',
@@ -77,7 +77,7 @@ const useStyles =  makeStyles( (theme) => ({ //used for styling of each element 
             fontSize: "16px",
         },
     }, 
-        genres:{
+        categories:{
         padding: '10px',
         fontSize: '15px',
         height: '50px',
@@ -100,29 +100,21 @@ function file2Base64(file) { //used for turning the image into a base64 file, re
 
 
 
-function AddDocument() {   //The function used to run the page itself. This creates a form so the user can add a movie which is then pushed to the database through an API.
+function AddDocument() {   //The function used to run the page itself. This creates a form so the user can add a document which is then pushed to the database through an API.
 	const classes = useStyles();   //this is used to create a class for each element when defined so it can styled. 
     const [documentTitle, setDocumentTitle] = useState(''); //use states for each element set to the before and after it is dealt with. 
     const [documentDescription, setDocumentDescription] = useState("");     
-    const [documentGenre, setDocumentGenre] = useState('');
+    const [documentCategory, setDocumentCategory] = useState('');
     const [documents, setDocuments] = useState([]);
     const [documentFile, setDocumentFile] = useState('');
-    const userID = localStorage.getItem('userID') //Gets the user id from local storage so it can be used for setting which user adds the movie. 
-    //     useEffect(()=> { //API to obtain addDocuments table fields
-    //         fetch('https://deliverrelax-amandarose-5000.codio-box.uk/AddDocument',
-    //               {credentials: 'include', 
-    //                method: 'POST', 
-    //                headers: { 'Content-type': 'application/json'}, 
-    //                body: JSON.stringify(documents)}).then(response =>response.json().then(data => {setDocuments(data.documents);
-    //         })
-    //     );
-    // },[documents]);
+    const userID = localStorage.getItem('userID') //Gets the user ID from local storage so it can be used for setting which user adds the document. 
+
     async function addDocuments (event) { 
-        const filesToUploads = document.querySelector('#ImageSelect').files  //gets the image file once it has been added so that it can rename it 
+        const filesToUploads = document.querySelector('#ImageSelect').files  //gets the image/document file once it has been added so that it can rename it 
         const file = filesToUploads[0]
         const fileName = file.name
         const data = await file2Base64(file) //uses base 64 to rename the file
-        const documentInfo = [documentTitle, documentDescription, documentGenre, fileName, data]; //sets each field which is required by the api and form. 
+        const documentInfo = [documentTitle, documentDescription, documentCategory, fileName, data]; //sets each field which is required by the api and form. 
         console.log (documentInfo)
               fetch('https://deliverrelax-amandarose-5000.codio-box.uk/AddDocument', { 
                         method: 'POST',
@@ -168,8 +160,8 @@ function AddDocument() {   //The function used to run the page itself. This crea
                     <div className={classes.headings}>
                         <p>4.  Add a Category </p>
                      </div>
-                    <div className= {classes.containersGenres}>
-                            <select value={documentGenre} className= {classes.genres} onChange={(e) => setDocumentGenre(e.target.value)}>
+                    <div className= {classes.containersCategories}>
+                            <select value={documentCategory} className= {classes.categories} onChange={(e) => setDocumentCategory(e.target.value)}>
                                     <option value="Maths">Maths</option>
                                     <option value="Computing">Computing</option>
                                     <option value="Algorithms">Algorithms</option>

@@ -1,7 +1,7 @@
 import React from 'react'; //required imports
 import {makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
-import { PDFViewer } from 'react-view-pdf';
+import { PDFViewer } from 'react-view-pdf'; //https://www.npmjs.com/package/pdf-viewer-reactjs
 
 const useStyles =  makeStyles( (theme) => ({ //styling
     documentDetails:{
@@ -121,7 +121,7 @@ export const Documents = ({document}) => {
                 </div>
                <div className={classes.sectionTwo}>
                                     {(() => { 
-                    if(docName.includes(".pdf") || docName.includes(".ppt") || docName.includes(".docx") ){
+                    if(docName.includes(".pdf") ){
                             return(
                                 <React.Fragment>
                                                 <div className={classes.fileview}>
@@ -137,7 +137,7 @@ export const Documents = ({document}) => {
                 </div>
                 <div className={classes.sectionThree}>
                 <p className={classes.desc}> {documents.documentDescription}  </p> 
-                <Button className={classes.Buttonss} onClick={() => {window.location=('./Genres/'+documents.documentGenre)}}>{documents.documentGenre}</Button>
+                <Button className={classes.Buttonss} onClick={() => {window.location=('./Categories/'+documents.documentGenre)}}>{documents.documentGenre}</Button>
                 </div>
 
                  <div className={classes.sectionFour}>
